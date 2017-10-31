@@ -1,15 +1,25 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<iostream>
 #include<string>
 using namespace std;
-#include "des.h"
-#include<stdlib.h>
+#include "Types.h"
+#include "GenDiffDistributionTables.h"
+#include "RoundFunction.h"
+#include<time.h>
+
+
+
+#include "Tables.h"
+
 
 //明文和密钥写在只读文件input.txt中，程序结束后将明文密钥密文写入只写文件output.txt中
 //user_supplied_plaintext ="4e6f772069732074";
 //user_supplied_key ="0123456789abcdef";
 int main()
 {
+	clock_t start,end;
+	start = clock(); 
 	char user_supplied_plaintext[80],user_supplied_key[80];
 
 	FILE *fp1;
@@ -71,5 +81,15 @@ int main()
 		printf("Can not close the file!\n");
 		exit(0);
 	}
+	GenDiffDistributionTable();
+	GenSearchInOrder();
+	//printf("%x\n",DDT_SearchInOrderX[0][8][0]);  
+	//round_two_traverse();
+	int a0=0;
+	round_two_j(a0);
+	//int test=(1<<4)|1;
+	//printf("%d",test);
+	end = clock();
+	printf("程序运行时间为：%f\n",(double)(end-start)/CLK_TCK);
 	return 0;
 }
