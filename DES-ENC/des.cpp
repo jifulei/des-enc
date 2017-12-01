@@ -6,6 +6,7 @@ using namespace std;
 #include "Types.h"
 #include "GenDiffDistributionTables.h"
 #include "RoundFunction.h"
+#include"RoundSearch.h"
 #include<time.h>
 
 
@@ -85,11 +86,19 @@ int main()
 	GenSearchInOrder();
 	//printf("%x\n",DDT_SearchInOrderX[0][8][0]);  
 	//round_two_traverse();
+	FILE *fp3;
+	if((fp3=fopen("fprintf.txt","w"))==NULL){
+		printf("1File open error!\n");
+		exit(0);
+	}
+	
 	int a0=0;
 	round_two_j(a0);
-	//int test=(1<<4)|1;
-	//printf("%d",test);
+	if(fclose(fp3)){
+		printf("Can not close the file!\n");
+		exit(0);
+	}
 	end = clock();
-	printf("程序运行时间为：%f\n",(double)(end-start)/CLK_TCK);
+	//printf("程序运行时间为：%f\n",(double)(end-start)/CLK_TCK);
 	return 0;
 }
